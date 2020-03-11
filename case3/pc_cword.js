@@ -7,8 +7,8 @@
 
    Crossword Puzzle Script
    
-   Author: 
-   Date:   
+   Author: Clint Crockett
+   Date:   March 11
    
    Global Variables
    ================

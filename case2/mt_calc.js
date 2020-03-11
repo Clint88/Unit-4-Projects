@@ -5,8 +5,8 @@
    Tutorial 11
    Case Problem 2
 
-   Author: 
-   Date:   
+   Author: Clint Crockett
+   Date:   March 11
    
    Filename: mt_calc.js
 	
