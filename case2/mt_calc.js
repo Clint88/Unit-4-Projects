@@ -32,10 +32,65 @@
       Returns the previous expression from the list of expressions in the textStr parameter
 
 */
+// this will load init function at the beging of the page
+window.onload = init();
 
+function init(){
+   var calcButtons = document.getElementsByClassName("calcButton");
 
+   for(var i = 0; i<calcButtons.length; i++){
+      calcButtons[i].addEventListener("click", buttonClick);
+   }
+   document.getElementById("calcWindow").addEventListener("keydown", calcKeys);
+}
 
+function buttonClick(e){
+   var calcValue = document.getElementById("calcWindow").value;
+   var calcDecimal = document.getElementById("decimals").value;
+   var buttonValue = e.target.value;
+   // these are buttons for on click
+   switch(buttonValue){
+      // this will delete all #s
+      case "del":
+         calcValue = "";
+         break;
+      // this will delete one #
+      case "bksp":
+         calcValue = eraseChar(calcValue);
+         break;
+      // this will solve the problem
+      case "enter":
+         calcValue += " = " + evalEq(calcValue, calcDecimal) + "\n";
+         break;
+      // this will go back the previous problem
+      case "prev":
+         calcValue += lastEq(calcValue);
+         break;
+      default: 
+         calcValue = calcValue + buttonValue;
+   }
+   document.getElementById("calcWindow").value = calcValue;
+   document.getElementById("calcWindow").focus();
+}
 
+function calcKeys(e){
+   var calcValue = document.getElementById("calcWindow").value;
+   var calcDecimal = document.getElementById("decimals").value;
+   // these are buttons for typing on your keyboard
+   switch(e.key){
+      case "Delete":
+         calcValue = "";
+         break;
+      case "Enter":
+         calcValue += " = " + evalEq(calcValue + calcDecimal);
+         break;
+      case "ArrowUp":
+         calcValue += lastEq(calcWindow.value);
+         break;
+         preventDefalt();
+   }
+   document.getElementById("calcWindow").value = calcValue;
+}
 
 
 /* ===================================================================== */

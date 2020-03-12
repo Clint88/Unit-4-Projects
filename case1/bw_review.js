@@ -33,7 +33,7 @@
       within textStr
 
 */
-
+//runs init functino when the page loads
 window.onload = init();
 
 function init(){
@@ -51,25 +51,47 @@ function lightStars(e){
    var starNumber = e.target.alt;
    var stars = document.querySelectorAll("span#stars img");
 
-   for(var i = 0; i<starNumber.length; i++){
-      document.getElementsByTagName("img")[0].setAttribute("src", "bw_star2.png");
+   for(var i = 0; i<starNumber; i++){
+      // this will light up the stars
+      stars[i].src = "bw_star2.png";
    }
-   for(var i = 0; starNumber<5; i++){
-      document.getElementsByTagName("img")[0].setAttribute("src", "bw_star.png");
-      document.getElementById("rating")[0].setAttribute(starNumber.value + stars);
-      
-      e.target.addEventListener("mouseleave", turnOffStars);
-      e.target.addEventListener("mouseleave", function(){
-         e.target.removeEventListener(turnOffStars);
+   for(var j = starNumber; j<5; j++){
+      stars[i].src = "bw_star.png";
+   }
+   document.getElementById("rating").value = (starNumber + "stars");
+   // tihs will stop the stars from appering when you unhover
+   e.target.addEventListener("mouseleave", turnOffStars);
+   e.target.addEventListener("click", 
+      function(){
+         e.target.removeEventListener("mouseleave", turnOffStars);
       });
+
+}
+// this is the function to turn off the stars
+function turnOffStars(){
+   var stars = document.querySelectorAll("span#stars img");
+   for(var i = 0; i<stars.length; i++){
+      stars[i].src = "bw_star.png";
+   }
+   document.getElementById("rating").value = "";
+}
+
+function updateCount(){
+   var commentText = document.getElementById("comment").value;
+   var charCount = countCharacters(commentText);
+   var  wordCountBox = document.getElementById("wordCount");
+
+   wordCountBox.value = charCount + "/1000";
+
+   if(charCount>1000){
+      wordCountBox.style.color = "white";
+      wordCountBox.style.background = "red";
+   }
+   else{
+      wordCountBox.style.color = "black";
+      wordCountBox.style.background = "white";
    }
 }
-
-function turnOffStars(e){
-   var star = document.querySelectorAll("span#stars img");
-   
-}
-
 
   
   
