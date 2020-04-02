@@ -49,9 +49,30 @@
 
 */
 
+var allLetters;
+var currentLetter;
+var acrossClue;
+var downClue;
+var typeDirection;
 
+window.onload = init();
 
+function init(){
+   allLetters = document.querySelectorAll("table#crossword span");
+   currentLetter = allLetters[0];
+   var acrossID = currentLetter.dataset.clueA;
+   var downID = currentLetter.dataset.clueD;
+   acrossClue = document.getElementById(currentLetter.dataset.clueA);
+   downClue = document.getElementById(currentLetter.dataset.clueD);
+}
 
+// function formatPuzzle(){
+//    currentLetter = puzzleLetter;
+//    for(var i = 0; i < allLetters.length; i++){
+//       allLetters[i].style.backgroundColor = "";
+//    }
+//    acrossClue[i]style.;
+// }
 
    
 
