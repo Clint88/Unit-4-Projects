@@ -64,16 +64,29 @@ function init(){
 
    var acrossID = currentLetter.dataset.clueA;
    var downID = currentLetter.dataset.clueD;
+   var typeImage;
 
    acrossClue = document.getElementById(currentLetter.dataset.clueA);
    downClue = document.getElementById(currentLetter.dataset.clueD);
 
-   formatPuzzle(currentLetter){
-      for(var i = 0; i = allLetters.length; i++){
-         cursor.style = "pointer";
-         addEventListener("onmousedown", function(onmousedown){})
+   for(var i = 0; i = allLetters.length; i++){
+      allLetters[i].style.cursor = "pointer";
+      allLetters[i].onmousedown = function(e){
+         formatPuzzle(e.target);
       }
    }
+
+   for(var i = 0; i = allLetters.length; i++){
+      if(keydown === true){
+         selectLetter();
+      }
+   } 
+
+   allLetters[i].style.cursor = "pointer";
+   if(typeImage === true){
+      swichTypeDirection();
+   }
+
 }
 
 function formatPuzzle(){
@@ -108,48 +121,60 @@ function formatPuzzle(){
    }
 }
 
-function selectLetter(){
-   var leftLetter = currentLetter.dataset.left;
-   var upLetter = currentLetter.dataset.up;
-   var rightLetter = currentLetter.dataset.right;
-   var downLetter = currentLetter.dataset.down;
+function selectLetter(e){
+   var leftLetter = document.getElementById(currentLetter.dataset.left);
+   var upLetter = document.getElementById(currentLetter.dataset.up);
+   var rightLetter = document.getElementById(currentLetter.dataset.right);
+   var downLetter = document.getElementById(currentLetter.dataset.down);
 
-   // userKey = keycode;  ?
+   var userKey = e.keycode; 
 
    if(userKey = 37){
       formatPuzzle(leftLetter);
    }
-   if(userKey === 38){
+   else if(userKey === 38){
       formatPuzzle(upLetter);
    }
-   if(userKey === 39 || userKey === 9){
+   else if(userKey === 39 || userKey === 9){
       formatPuzzle(rightLetter);
    }
-   if(userKey === 40 || userKey === 13){
+   else if(userKey === 40 || userKey === 13){
       formatPuzzle(downLetter);
    }
-   if(userKey === 8 || userKey === 46){
-      formatPuzzle(){
-         currentLetter = "";
-      }
+   else if(userKey === 8 || userKey === 46){
+         currentLetter.textContent = "";
    }
-   if(userKey === 32){
+   else if(userKey === 32){
       swichTypeDirection();
    }
-   if(userKey === 65 && userKey === 90){
-      currentLetter = getChar("userKey"){
-         if(typeDirection = "right"){
-            formatPuzzle(rightLetter);
-         }
-         else{
-            formatPuzzle(downLetter);
-         }
+   else if(userKey >= 65 && userKey <= 90){
+      currentLetter = getChar("userKey")
+
+      if(typeDirection = "right"){
+         formatPuzzle(rightLetter);
       }
+      else{
+         formatPuzzle(downLetter);
+         }
    }
-   preventDefalt()
+   
+   e.preventDefalt()
 }
    
-   
+function swichTypeDirection(){
+   var typeImage;
+   if(typeDirection === "right"){
+      typeDirection = "down";
+      typeImage.style.src = "pc_right.png";
+      typeImage.style.backgroundColor = "rgb(255, 191, 191)";
+
+   }
+   else{
+      typeDirection = "right";
+      typeImage.style.src = "pc_down.png";
+      typeImage.style.backgroundColor = "rgb(191, 191, 255)";
+   }
+}   
 
 
 
